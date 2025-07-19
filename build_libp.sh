@@ -18,7 +18,7 @@ rm -f "$BUILD_DIR"/*.o
 for file in "$SRC_DIR"/*.c; do
     echo "Compiling $file"
     obj="$BUILD_DIR/$(basename "${file%.c}.c.o")"
-    gcc -c "$file" -o "$obj" -Wall -Wextra -fno-pic -fno-asynchronous-unwind-tables -m32 -nostdlib -I"$INCLUDE_DIR"
+    gcc -c "$file" -o "$obj" -Wall -Wextra -fno-pic -fno-asynchronous-unwind-tables -m32 -masm=intel -mpreferred-stack-boundary=2 -I"$INCLUDE_DIR"
     OBJS+=("$obj")
 done
 
