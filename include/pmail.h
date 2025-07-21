@@ -2,7 +2,7 @@
 #define PMAIL_H_
 
 // Sends a message to another processes mailbox
-void send_message(int receiver_pid, int size, const char* data);
+void send_message(int receiver_pid, int size, const char *data);
 
 // Reads a message from own mailbox.
 // Returns 1 if a message is present, otherwise 0
