@@ -1,10 +1,55 @@
 # libp Testing
 
-This is a general guide on how to write tests for lib.
+This is a general guide on how to write tests for lib. All tests should live in the `test/` director and follow the naming convention `<module>_test.c`(eg. `pstring_test.c`). Each test file targets a single module and must `#include "testlib.h` to integrate with the test suite.
 
 ## File Structure
 
-blah blah blah something about testlib.c, file set up, and function naming. Someone will eventually write this...
+The basic layout of a test includes:
+
+- **Setup:** Optional global variables or a `setup()` function to initialize test_state.
+- **Test Functions:** Each function tests one behavior and follows the arrange-act-assert pattern.
+- **Main Function:** Calls `test_handler` for each test, followed by `test_output(__FILE__)` to display results.
+
+[!Note]
+`setup()` does not automatically run before tests, you will need to call it during the arrange block. You can use what ever name you wish for test set up functions_
+
+All test functions must:
+
+- Be named descriptively and clearly indicate the behavior under test.
+- Contain no parameters and return void.
+- Be registered in `main()` using `test_handler("description", func_name)`
+
+### Example Test
+
+```c
+// example_test.c
+#include "example.c"
+#include "testlib.h"
+
+// Test Variables
+static char *empty_string = "test string";
+static int num = 69;
+
+// Test Helper Functions
+void setup() {
+    // some setup stuff
+}
+
+// Example Tests
+void foo_non_empty_string() {
+    setup();
+    
+    char* result = foo(num);
+
+    assert_continue(result)
+}
+
+// Main function
+int main() {
+    test_handler("foo returns non empty string", foo_non_empty_string);
+    test_output(__FILE__);
+}
+```
 
 ## Test Structure
 
@@ -54,3 +99,6 @@ void good_test_function() {
 }
 
 ```
+
+[!Note]
+If needed after the assert block another section for cleaning up arrange (freeing any memory, closing files, etc) can be done. This can also be encapsulated in a `clean_up()` function.

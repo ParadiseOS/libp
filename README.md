@@ -16,7 +16,8 @@ To run the libp unit tests run [libp_test](libp_test.sh). By default the files t
 | `--compact` | `-c`  | Standard test output (default)     |
 | `--verbose` | `-v`  | Enables verbose prints             |
 | `--files`   | `-f`  | Test specific files                |
-| `--help`    | `-h`  | Usage descriptions for above flags |
+
+For more testing information refer to the [README](test/README.md).
 
 ## Usage
 

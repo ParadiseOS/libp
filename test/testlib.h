@@ -5,7 +5,7 @@
 extern int tests_run;
 extern int tests_failed;
 
-#ifndef SIMPLE_PRINT
+#ifndef NO_ASSERT_PRINT
 #define assert_continue(cond)                                                  \
     do {                                                                       \
         if (!(cond)) {                                                         \
@@ -51,11 +51,9 @@ void test_handler(const char *func_name, test_func_t func);
 // Outputs results of tested file
 void test_output(const char *filename);
 
-// Compact testing output --compact set
-void compact(const char *func_name);
-
-// Verbose testing output when --verbose set
-void verbose(const char *func_name);
+// Testing output
+// Use flags --compact or --verbose to set
+void test_print(const char *func_name);
 
 // Verbose print for extra info when --verbose set
 void verbose_print(const char *func_name, const char *str);

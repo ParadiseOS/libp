@@ -2,6 +2,7 @@
 
 FILES_TO_TEST=()
 PRINT_FLAG="-D COMPACT_PRINT" # default mode
+NO_ASSERT_PRINT_FLAG=""
 IS_SIMPLE_PRINT=false
 
 # Parse arguments
@@ -17,6 +18,7 @@ while [[ $# -gt 0 ]]; do
         --simple|-s)
             PRINT_FLAG="-D SIMPLE_PRINT"
             IS_SIMPLE_PRINT=true
+            NO_ASSERT_PRINT_FLAG="-D NO_ASSERT_PRINT"
             shift
             ;;
         --verbose|-v)
@@ -29,12 +31,18 @@ while [[ $# -gt 0 ]]; do
             IS_SIMPLE_PRINT=false
             shift
             ;;
+        --no_assert|-a)
+            NO_ASSERT_PRINT_FLAG="-D NO_ASSERT_PRINT"
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
             exit 1
             ;;
     esac
 done
+
+# Add check for only -s, -v, or -c to be enabled
 
 # If no files specified, use all *_test.c files in test/
 if [ ${#FILES_TO_TEST[@]} -eq 0 ]; then
@@ -56,7 +64,7 @@ for base in "${FILES_TO_TEST[@]}"; do
     TESTLIB="test/testlib.c"
     OUTPUT="build/${base}_test.out"
 
-    gcc "$TEST" "$TESTLIB" "$SRC" -I include/ $PRINT_FLAG -o "$OUTPUT" || {
+    gcc "$TEST" "$TESTLIB" "$SRC" -I include/ $PRINT_FLAG $NO_ASSERT_PRINT_FLAG -o "$OUTPUT" || {
         echo "Compilation failed for $base"
         continue
     }
@@ -65,5 +73,7 @@ for base in "${FILES_TO_TEST[@]}"; do
       echo "Running $base tests"
     fi
     "./$OUTPUT"
-    echo ""
+    if  [ $IS_SIMPLE_PRINT != true ]; then
+        echo ""
+    fi
 done

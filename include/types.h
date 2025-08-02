@@ -18,4 +18,8 @@ typedef uint8_t bool;
 #define TRUE  1
 #define FALSE 0
 
+#ifndef NULL
+#define NULL ((void *) 0)
+#endif
+
 #endif // TYPES_H_

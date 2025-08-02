@@ -6,7 +6,7 @@ int tests_run = 0;
 int tests_failed = 0;
 int test_failed = 0;
 
-void test_handler(const char *func_name, test_func_t func) {
+void test_handler(const char *test_name, test_func_t func) {
     tests_run++;
     test_failed = 0;
 
@@ -15,8 +15,7 @@ void test_handler(const char *func_name, test_func_t func) {
     if (test_failed)
         tests_failed++;
 
-    compact(func_name);
-    verbose(func_name);
+    test_print(test_name);
 }
 
 void test_output(const char *filename) {
@@ -30,20 +29,18 @@ void test_output(const char *filename) {
 #endif // SIMPLE_PRINT
 
 #if defined(COMPACT_PRINT) || defined(VERBOSE_PRINT)
-    int tests_passed = tests_run - test_failed;
+    int tests_passed = tests_run - tests_failed;
     printf("%s: %d passed, %d failed\n", filename, tests_passed, tests_failed);
 #endif
 }
 
-void compact(const char *func_name) {
+void test_print(const char *func_name) {
 #ifdef COMPACT_PRINT
     if (test_failed) {
         printf("[FAIL] %s\n", func_name);
     }
 #endif // COMPACT_PRINT
-}
 
-void verbose(const char *func_name) {
 #ifdef VERBOSE_PRINT
     if (test_failed) {
         printf("[FAIL] %s\n", func_name);
