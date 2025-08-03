@@ -10,12 +10,13 @@ To run the libp unit tests run [libp_test](libp_test.sh). By default the files t
 
 **Testing Flags**
 
-| Flag        | Short | Description                        |
-|-------------|-------|------------------------------------|
-| `--simple`  | `-s`  | Simple testing output              |
-| `--compact` | `-c`  | Standard test output (default)     |
-| `--verbose` | `-v`  | Enables verbose prints             |
-| `--files`   | `-f`  | Test specific files                |
+| Flag          | Short | Description                        |
+|---------------|-------|------------------------------------|
+| `--simple`    | `-s`  | Simple testing output              |
+| `--compact`   | `-c`  | Standard test output (default)     |
+| `--verbose`   | `-v`  | Enables verbose prints             |
+| `--files`     | `-f`  | Test specific files                |
+| `--no_assert` | `-a`  | Turns off assert prints in tests   |
 
 For more testing information refer to the [README](test/README.md).
 

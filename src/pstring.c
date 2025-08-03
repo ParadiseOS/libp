@@ -92,6 +92,8 @@ char *pstrstr(const char *str, const char *substr) {
     return NULL;
 }
 
+// Memory Manipulation
+
 void *pmemchr(const void *ptr, char ch, usize count) {
     const unsigned char *p = ptr;
     while (count--) {
@@ -126,5 +128,3 @@ void pmemcpy(void *restrict dest, void *restrict src, usize count) {
         *d++ = *s++;
     return;
 }
-
-// Memory Manipulation

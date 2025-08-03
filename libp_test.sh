@@ -8,7 +8,7 @@ IS_SIMPLE_PRINT=false
 # Parse arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --files)
+        --files|-f)
             shift
             while [[ $# -gt 0 && "$1" != --* && "$1" != -* ]]; do
                 FILES_TO_TEST+=("$1")
@@ -41,8 +41,6 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
-
-# Add check for only -s, -v, or -c to be enabled
 
 # If no files specified, use all *_test.c files in test/
 if [ ${#FILES_TO_TEST[@]} -eq 0 ]; then

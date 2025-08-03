@@ -22,4 +22,9 @@ typedef uint8_t bool;
 #define NULL ((void *) 0)
 #endif
 
+typedef struct {
+    int quot;
+    int rem;
+} div_p;
+
 #endif // TYPES_H_
