@@ -14,8 +14,20 @@ echo "Building libp"
 
 rm -f "$BUILD_DIR"/*.o
 
+USE_PMATH=false
+for arg in "$@"; do
+    if [ "$arg" = "-lm" ]; then
+        USE_PMATH=true
+    fi
+done
+
 # Compile .c files to .o
 for file in "$SRC_DIR"/*.c; do
+    base=$(basename "$file")
+    if [ "$USE_PMATH" = false ] && [ "$base" = "pmath.c" ]; then
+        continue
+    fi
+
     echo "Compiling $file"
     obj="$BUILD_DIR/$(basename "${file%.c}.c.o")"
     gcc -c "$file" -o "$obj" -Wall -Wextra -fno-pic -fno-asynchronous-unwind-tables -m32 -masm=intel -mpreferred-stack-boundary=2 -I"$INCLUDE_DIR"
