@@ -1,6 +1,7 @@
 #ifndef TYPES_H_
 #define TYPES_H_
 
+#include <stdbool.h>
 #include <stdint.h>
 
 // clang-format off
@@ -16,19 +17,10 @@ typedef uint8_t  u8;
 typedef int8_t   i8;
 typedef float    f32;
 typedef double   f64;
-typedef uint8_t  bool;
 // clang-format on
-//
-#define TRUE  1
-#define FALSE 0
 
 #ifndef NULL
 #define NULL ((void *) 0)
 #endif
-
-typedef struct {
-    int quot;
-    int rem;
-} div_p;
 
 #endif // TYPES_H_

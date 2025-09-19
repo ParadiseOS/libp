@@ -6,6 +6,8 @@ The ParadiseOS Standard Library
 
 You can build libp with [build_libp](build_libp.sh). This will generate the `libp.o` object file.
 
+To build libp math functions run the above script with `-lm`.
+
 To run the libp unit tests run [libp_test](libp_test.sh). By default the files that pass and tests that fail will appear in the terminal.
 
 **Testing Flags**

@@ -9,8 +9,6 @@ PFP_TYPES pfpclassify(f64 n) {
     PFP_Union32 p;
     p.d = n;
 
-    i32 abs_hi = p.p.hi & 0x7FFFFFFF; // exponent + top mantissa bits
-
     if (((p.p.hi & 0x7FFFFFFF) | p.p.lo) == 0)
         return PFP_ZERO;
 

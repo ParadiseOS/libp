@@ -13,6 +13,11 @@
 #define MANT_MASK 0x000FFFFF
 #define SIGN_MASK 0x80000000
 
+typedef struct {
+    int quot;
+    int rem;
+} div_p;
+
 typedef enum PFP_TYPES {
     PFP_NAN,
     PFP_INFINITE,
