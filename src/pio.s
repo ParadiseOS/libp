@@ -2,8 +2,10 @@ format ELF
 
 section ".text" executable
 
-public pputn
-pputn:
+; Syscall as of  9/19/25
+
+public write1
+write1:
 
     mov eax, 1          ; print string w/ length syscall
     mov ebx, [esp + 4]  ; pointer to string
@@ -12,8 +14,8 @@ pputn:
     int 0x80
     ret
 
-public pputs
-pputs:
+public write2
+write2:
     mov eax, 2          ; print string syscall
     mov ebx, [esp + 4]  ; str
     int 0x80
