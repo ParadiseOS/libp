@@ -5,10 +5,6 @@
 
 // Definitions
 
-#define NAN          (*(const f64 *) (const u32[]) {0x00000000, 0x7FF80000})
-#define INFINITY     (1.0f / 0.0f)
-#define NEG_INFINITY (-INFINITY)
-
 #define EXP_MASK  0x7FF00000
 #define MANT_MASK 0x000FFFFF
 #define SIGN_MASK 0x80000000
@@ -133,10 +129,6 @@ f64 ppow(f64 x, f64 y);
 // Computes the square root of n
 f64 psqrt(f64 n);
 
-// Computes the ceil of n
-f64 ceil(f64 n);
-
-// Computes the largest integer value not greater than n
-f64 floor(f64 n);
+// ceil and floor function?
 
 #endif // PMATH_H_

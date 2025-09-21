@@ -23,4 +23,8 @@ typedef double   f64;
 #define NULL ((void *) 0)
 #endif
 
+#define NAN          (*(const f64 *) (const u32[]) {0x00000000, 0x7FF80000})
+#define INFINITY     (1.0f / 0.0f)
+#define NEG_INFINITY (-INFINITY)
+
 #endif // TYPES_H_
