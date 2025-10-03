@@ -8,8 +8,8 @@ extern void write1(const char *str, int sz);
 extern void write2(const char *str);
 
 // Helper function for pprintf
-i8 print_string(const char *str, char *buffer_) {
-    i8 len = 0;
+u32 print_string(const char *str, char *buffer_) {
+    u32 len = 0;
     for (const char *s = str; *s; s++, len++) {
         *buffer_++ = *s;
     }
@@ -19,8 +19,8 @@ i8 print_string(const char *str, char *buffer_) {
 const char HEX_DIGITS[] = "0123456789ABCDEF";
 
 // Helper function for pprintf
-i8 print_hex(u32 n, char *buffer_) {
-    i8 len = 0;
+u32 print_hex(u32 n, char *buffer_) {
+    u32 len = 0;
     bool leading_zeros = true;
 
     if (n == 0) {
@@ -44,8 +44,8 @@ i8 print_hex(u32 n, char *buffer_) {
 }
 
 // Helper function for pprintf
-i8 print_ptr(void *ptr, char *buffer_) {
-    i8 len = 0;
+u32 print_ptr(void *ptr, char *buffer_) {
+    u32 len = 0;
 
     // Write "0x" to the buffer
     *buffer_++ = '0';
@@ -59,8 +59,8 @@ i8 print_ptr(void *ptr, char *buffer_) {
 }
 
 // Helper function for pprintf
-i8 print_bin(u32 n, char *buffer_) {
-    i8 len = 0;
+u32 print_bin(u32 n, char *buffer_) {
+    u32 len = 0;
     bool leading_zeros = true;
 
     // Handle the special case of a zero value
@@ -88,7 +88,7 @@ i8 print_bin(u32 n, char *buffer_) {
 }
 
 // Helper function for pprintf
-i8 print_int(u32 n, bool is_signed, char *buffer_) {
+u32 print_int(u32 n, bool is_signed, char *buffer_) {
     char buffer[12];
     i8 i = 0;
 
@@ -113,7 +113,7 @@ i8 print_int(u32 n, bool is_signed, char *buffer_) {
         buffer[i++] = '-';
     }
 
-    i8 len = i;
+    u32 len = i;
     while (i > 0) {
         *buffer_++ = buffer[--i];
     }
@@ -122,8 +122,8 @@ i8 print_int(u32 n, bool is_signed, char *buffer_) {
 }
 
 // Helper function for pprintf
-i8 print_float(f64 n, u32 precision, char *buffer_) {
-    i8 len = 0;
+u32 print_float(f64 n, u32 precision, char *buffer_) {
+    u32 len = 0;
 
     if (n != n) {
         len = print_string("nan", buffer_);
@@ -212,7 +212,7 @@ void pputn(const char *str, u32 length) {
 
 void pprintf(const char *fmt, ...) {
     char buffer[BUF_SIZE];
-    int len = 0;
+    u32 len = 0;
 
     va_list args;
     va_start(args, fmt);
