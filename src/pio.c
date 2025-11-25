@@ -1,11 +1,10 @@
 #include "pio.h"
+#include "psyscall.h"
+#include "syscall.h"
 #include "types.h"
 #include <stdarg.h>
 
 #define BUF_SIZE 1024
-
-extern void write1(const char *str, int sz);
-extern void write2(const char *str);
 
 // Helper function for pprintf
 u32 print_string(const char *str, char *buffer_) {
@@ -199,15 +198,15 @@ u32 print_float(f64 n, u32 precision, char *buffer_) {
 }
 
 void pputc(const char c) {
-    write1(&c, 1);
+    psyscall(SYSCALL_PUTSN, (u32) c, 1, 0, 0, 0);
 }
 
 void pputs(const char *str) {
-    write2(str);
+    psyscall(SYSCALL_PUTS, (u32) str, 0, 0, 0, 0);
 }
 
 void pputn(const char *str, u32 length) {
-    write1(str, length);
+    psyscall(SYSCALL_PUTSN, (u32) str, length, 0, 0, 0);
 }
 
 void pprintf(const char *fmt, ...) {
@@ -278,7 +277,7 @@ void pprintf(const char *fmt, ...) {
         buffer[len] = '\0';
     }
 
-    write1(buffer, len);
+    psyscall(SYSCALL_PUTSN, (u32) buffer, len, 0, 0, 0);
 
     va_end(args);
 }

@@ -27,7 +27,7 @@ void send_message(u32 reader_pid, u32 data_size, const char *data, u32 flags);
 
 // Reads a message from own mailbox.
 // Returns 1 if a message is present, otherwise 0
-int read_message(
+u32 read_message(
     u32 sender_pid, u32 reader_pid, MailboxMessage *message, u32 flags
 );
 
