@@ -18,6 +18,11 @@
 #define SYSCALL_PUTSN        99
 #define SYSCALL_PUTS         100
 
-u32 psyscall(u32 num, u32 a, u32 b, u32 c, u32 d, u32 e);
+typedef struct {
+    u32 ret;
+    u32 err;
+} SyscallReturn;
+
+SyscallReturn psyscall(u32 num, u32 a, u32 b, u32 c, u32 d, u32 e);
 
 #endif // PSYSCALL_H_

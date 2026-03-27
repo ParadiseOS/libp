@@ -4,7 +4,7 @@ set -e
 
 SRC_DIR="src"
 BUILD_DIR="build"
-BUILD_FLAGS="-Wall -Wextra -fno-pic -fno-asynchronous-unwind-tables -m32 -masm=intel -Iinclude"
+BUILD_FLAGS="-Wall -Wextra -fno-pic -fno-asynchronous-unwind-tables -m32 -masm=intel -Iinclude -I../include"
 
 mkdir -p "$BUILD_DIR"
 

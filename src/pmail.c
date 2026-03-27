@@ -13,5 +13,5 @@ u32 read_message(
 ) {
     return psyscall(
         SYSCALL_READ_MESSAGE, sender_pid, reader_pid, (u32) message, flags, 0
-    );
+    ).ret;
 }
